@@ -1,4 +1,4 @@
-
+import styles from './style.css?inline'
 
 export class ExpandableBlock extends HTMLElement {
  
@@ -19,11 +19,7 @@ export class ExpandableBlock extends HTMLElement {
 
   private render() {
     this.shadow.innerHTML = `
-      <style>
-        .test_content {
-          color: red;
-        }
-      </style>
+      <style>${styles}</style>
       <div>
         <div>Test ExpandableBlock</div>
         <!-- future web components childs -->

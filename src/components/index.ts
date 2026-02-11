@@ -1,3 +1,3 @@
-export { ExpandableBlock } from "./expandable-block";
+export { ExpandableBlock } from "./ExpandableBlock/ExpandableBlock.ts";
 
 
