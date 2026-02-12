@@ -1,4 +1,17 @@
-:host .test_content {
+.content {
   color: blue;
   font-size: 14pt;
+
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.header {
+  cursor: pointer;
+  padding: 12px;
+  background: #646cff;
+  color: white;
+  user-select: none;
 }
