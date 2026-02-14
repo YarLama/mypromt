@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: oklch(92% 0.01 256.848);
+  --secondary: oklch(45% 0.04 256.848);
+  --alternative: oklch(65% 0.16 256.848);
+  --bg: oklch(27.8% 0.033 256.848);
+
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --text-base: 1.25rem;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--primary);
+  background: var(--bg);
+}
+
+.app {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+
+  .app {
+    max-width: 720px;
+  }
+}

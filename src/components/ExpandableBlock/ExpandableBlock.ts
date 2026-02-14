@@ -35,7 +35,7 @@ export class ExpandableBlock extends HTMLElement {
     const label = this.getAttribute('label') || ''
     this.shadow.innerHTML = `
       <style>${styles}</style>
-      <div>
+      <div class="expand">
         <div class="header">
         ${label && `<div>${label}</div>`}
         <div class="arrow">▼</div>
