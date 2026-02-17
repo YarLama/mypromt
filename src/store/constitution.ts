@@ -36,10 +36,12 @@ class Constitution {
 
   public getFullText(): string {
     return [
+      `# CONSTITUTION`,
       `## ROLE\nYou are a ${this._role}`,
-      `## CORE TECH STACK\n ${this._stack}`,
+      `## CORE TECH STACK\n${this._stack}`,
       this.getRulesText(),
-      this.getMarksText()
+      this.getMarksText(),
+      `\nYour first answer should be: "I'm ready, waiting for tasks."`
     ].join('\n');
   }
   private getMarksText() {
