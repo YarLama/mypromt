@@ -1,4 +1,4 @@
-import { ExpandableBlock } from "./components";
+import { ExpandableBlock, InputText } from "./components";
 
 
 class App {
@@ -17,6 +17,7 @@ class App {
     }
 
     defineComponent('expandable-block', ExpandableBlock);
+    defineComponent('input-text', InputText);
   }
 }
 

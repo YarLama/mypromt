@@ -37,8 +37,8 @@ export class ExpandableBlock extends HTMLElement {
       <style>${styles}</style>
       <div class="expand">
         <div class="header">
-        ${label && `<div>${label}</div>`}
-        <div class="arrow">▼</div>
+          ${label && `<div>${label}</div>`}
+          <div class="arrow">▼</div>
         </div>
         <div class="content">
           <slot></slot>
