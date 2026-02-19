@@ -32,8 +32,8 @@ textarea, input {
   &:placeholder-shown ~ label {
     position: absolute;
     cursor: text;
-    color: var(--primary);
-    left: var(--left-calc);
+    color: var(--secondary);
+    left: calc(var(--left-calc) - 10px);
     top: var(--top-calc);
   }
   &:is(:focus, :not(:placeholder-shown)) {
@@ -41,6 +41,7 @@ textarea, input {
       position: absolute;
       font-size: var(--font-size);
       display: block;
+      color: var(--primary);
       background-color: var(--bg);
       padding: 0 10px;
       opacity: 1;
