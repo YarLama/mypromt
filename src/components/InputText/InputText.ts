@@ -16,13 +16,10 @@ export class InputText extends HTMLElement {
 
   disconnectedCallback() { }
 
-  private registerListeners() {
-    const input = this.shadowRoot?.querySelector('input');
-    const textarea = this.shadowRoot?.querySelector('textarea');
-  }
+  private registerListeners() { }
 
   private getTemplate(type: "text" | "textarea", label: string) {
-    switch(type) {
+    switch (type) {
       case "text":
         return `<input type="text" placeholder=${label}></input>`;
       case "textarea":
@@ -37,7 +34,7 @@ export class InputText extends HTMLElement {
     this.shadow.innerHTML = `
       <style>${styles}</style>
       ${this.getTemplate(type, label)}
-      ${ label && `<label class="label">${label}</label>` }
+      ${label && `<label class="label">${label}</label>`}
     `
   }
 

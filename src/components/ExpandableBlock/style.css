@@ -3,8 +3,21 @@
   flex-direction: column;
 }
 
+::slotted(*) {
+  grid-column: 1/-1;
+}
+
+::slotted(.w-80) {
+  grid-column: span 8;
+}
+
+::slotted(.w-20) {
+  grid-column: span 2;
+}
+
 .expand {
   margin-bottom: 10px;
+  grid-column: 1/-1;
 
   @media (min-width: 768px) {
     margin-top: 10px;
@@ -16,6 +29,9 @@
   font-size: 14pt;
   padding: 5px;
 
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
 
   &.hidden {
     display: none;
