@@ -1,11 +1,19 @@
-import { ExpandableBlock, InputText } from "./components";
-
+import { AppButton, ExpandableBlock, InputText } from "./components";
+import { AppHandlers } from "./utils/actionLogic";
 
 class App {
   static async init() {
     console.log('App initializing...');
     this.registerComponents();
+    this.registerAppListeners();
     console.log('App initializing success!')
+  }
+
+  private static registerAppListeners() {
+    document.addEventListener('app-action', (e) => {
+      const { action } = e.detail;  
+      AppHandlers[action]?.();
+    });
   }
 
   private static registerComponents() {
@@ -18,6 +26,7 @@ class App {
 
     defineComponent('expandable-block', ExpandableBlock);
     defineComponent('input-text', InputText);
+    defineComponent('app-button', AppButton);
   }
 }
 
