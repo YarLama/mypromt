@@ -18,7 +18,7 @@ textarea, input {
   color: var(--primary);
   background-color: var(--bg);
   border: var(--border-size) solid var(--secondary);
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   min-height: 50px;
   font-size: var(--font-size);
   margin: var(--margin);
