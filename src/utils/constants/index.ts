@@ -7,7 +7,7 @@ const marksDefault = new Map<string, string>([
   ['?', 'EXPLAIN'],
   ['#', 'SEARCH'],
   ['x', 'MISTAKE OR FAULT'],
-  ['^', 'RALLBACK TO [id] TASK']
+  ['^', 'ROLLBACK TO [id] TASK']
 ])
 
 const ruleDefault: string[] = [
