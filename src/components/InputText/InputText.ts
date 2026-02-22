@@ -1,6 +1,17 @@
 import styles from './style.css?inline'
 
-export class InputText extends HTMLElement {
+declare global {
+
+  interface IInputText extends HTMLElement {
+    readonly value: string;
+  }
+
+  interface HTMLElementTagNameMap {
+    'input-text': IInputText;
+  }
+}
+
+export class InputText extends HTMLElement implements IInputText {
 
   private shadow: ShadowRoot;
   private type = (this.getAttribute('type') as "text" | "textarea") || "text";
@@ -13,12 +24,17 @@ export class InputText extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.registerListeners();
   }
 
   disconnectedCallback() { }
 
-  private registerListeners() { }
+  get value(): string {
+    const inputText = this.shadowRoot?.querySelector("input")?.value;
+    const textareaText = this.shadowRoot?.querySelector("textarea")?.value;
+    const responce = this.type === "text" ? inputText : textareaText;
+
+    return responce ?? "";
+  }
 
   private getTemplate(type: "text" | "textarea", label: string) {
     switch (type) {

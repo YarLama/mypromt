@@ -8,8 +8,8 @@ export const appEvents = {
 } as const;
 
 declare global {
-  interface DocumentEventMap{
-    'app-action': CustomEvent<{action: appEventsType}>;
+  interface DocumentEventMap {
+    'app-action': CustomEvent<{ action: appEventsType }>;
   }
 }
 

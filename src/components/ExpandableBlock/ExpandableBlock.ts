@@ -15,10 +15,6 @@ export class ExpandableBlock extends HTMLElement {
     this.registerListeners();
   }
 
-  disconnectedCallback() {
-    // remove listeners, e.t.c
-  }
-
   private registerListeners() {
     const header = this.shadowRoot?.querySelector('.header')
     const content = this.shadowRoot?.querySelector('.content')
