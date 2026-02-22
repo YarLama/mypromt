@@ -1,9 +1,10 @@
-import type appEventsType from '../../utils/types/actions';
+import type { appEventsType } from '../../utils/types/actions';
 import styles from './style.css?inline'
 
 export class AppButton extends HTMLElement {
 
-  private label = this.getAttribute('label') || '';
+  private text = this.getAttribute('text') || '';
+  private afterClickText = this.getAttribute('afterClickText') || '';
   private action = this.getAttribute('action') as appEventsType || '';
   private shadow: ShadowRoot;
 
@@ -17,9 +18,21 @@ export class AppButton extends HTMLElement {
     this.registerListeners()
   }
 
-  disconnectionCallback() {}
+  disconnectionCallback() { }
 
   private registerListeners() {
+    const button = this.shadowRoot?.querySelector('button');
+    if (button && this.afterClickText) {
+      button.addEventListener('click', () => {
+        button.innerText = this.afterClickText;
+        button.disabled = true;
+        setTimeout(() => {
+          button.innerText = this.text;
+          button.disabled = false;
+        }, 1000)
+      })
+    }
+
     this.onclick = () => {
       if (this.action) {
         this.dispatchEvent(new CustomEvent('app-action', {
@@ -29,12 +42,13 @@ export class AppButton extends HTMLElement {
         }))
       }
     }
+
   }
 
   private render() {
     this.shadow.innerHTML = `
       <style>${styles}</style>
-      <button>${this.label}</button>
+      <button>${this.text}</button>
     `
   }
 }

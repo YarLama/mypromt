@@ -3,6 +3,8 @@ import styles from './style.css?inline'
 export class InputText extends HTMLElement {
 
   private shadow: ShadowRoot;
+  private type = (this.getAttribute('type') as "text" | "textarea") || "text";
+  private label = this.getAttribute('label') || ''
 
   constructor() {
     super();
@@ -29,12 +31,10 @@ export class InputText extends HTMLElement {
   }
 
   private render() {
-    const type = (this.getAttribute('type') as "text" | "textarea") || "text";
-    const label = this.getAttribute('label') || ''
     this.shadow.innerHTML = `
       <style>${styles}</style>
-      ${this.getTemplate(type, label)}
-      ${label && `<label class="label">${label}</label>`}
+      ${this.getTemplate(this.type, this.label)}
+      ${this.label && `<label class="label">${this.label}</label>`}
     `
   }
 

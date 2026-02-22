@@ -25,6 +25,7 @@ textarea, input {
   padding: var(--label-padding-up-down) var(--label-padding-left-right);
   &:is(textarea) {
     resize: vertical;
+    min-height: 150px;
   }
   &::placeholder {
     opacity: 0;
