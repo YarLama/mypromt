@@ -11,23 +11,14 @@
   <body>
     <div class="app">
       <div>
-        <expandable-block label="Constitution">
+        <expandable-block label="Constitution" expanded="false">
           <input-text id="ct-1" type="text" label="role"></input-text>
           <input-text id="ct-2" type="textarea" label="tech stack"></input-text>
           <app-button class="center" action="getConstitution" text="Copy Constitution" afterClickText="Copied"></app-button>
         </expandable-block>
         <expandable-block label="Tasks">
-          <div class="w-20">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-80">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-80">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-20">test block 2</div>
-          <div class="w-80">test block 2</div>
-          <div class="w-20">test block 2</div>
+          <input-text id="ct-3" type="textarea" label="data block"></input-text>
+          <app-button class="center" action="getTask" text="Copy Task" afterClickText="Copied"></app-button>
         </expandable-block>
       </div>
     </div>
