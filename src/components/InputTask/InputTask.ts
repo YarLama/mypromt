@@ -26,6 +26,16 @@ export class InputTask extends HTMLElement {
     this.updateRender();
   }
 
+  focus(options?: FocusOptions): void {
+    const inputEl = this.shadowRoot?.querySelector('.input') as HTMLElement;
+
+    if (inputEl) {
+      inputEl.focus(options);
+    } else {
+      super.focus(options);
+    }
+  }
+
   private updateRender() {
     this.render();
     this.registerListeners();
@@ -46,7 +56,7 @@ export class InputTask extends HTMLElement {
         const target = e.target as HTMLElement;
         const markEl = target.closest('.mark');
         const toEditEl = target.closest('.to-edit-layer');
-        
+
         if (markEl instanceof HTMLElement) {
           this._selectedMark = markEl.dataset.mark || "";
           this._state = "edit";
@@ -63,12 +73,23 @@ export class InputTask extends HTMLElement {
 
     if (inputEl) {
       let timer: number | null = null;
+
       inputEl.addEventListener('input', (e) => {
         const target = e.currentTarget as HTMLElement;
         if (timer) clearTimeout(timer)
         timer = setTimeout(() => {
           this._taskText = target.textContent;
         }, 500);
+      })
+
+      inputEl.addEventListener('focus', (e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.classList.add('focused')
+      })
+
+      inputEl.addEventListener('blur', (e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.classList.remove('focused')
       })
     }
 
