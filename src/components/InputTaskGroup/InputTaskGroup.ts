@@ -5,7 +5,8 @@ declare global {
     readonly value: Array<{
       "mark": string,
       "text": string
-    }>
+    }>;
+    readonly data: string;
   }
 
   interface HTMLElementTagNameMap {
@@ -37,12 +38,34 @@ export class InputTaskGroup extends HTMLElement implements IInputTaskGroup {
     return [];
   }
 
+  get data() {
+    const dataEl = this.shadowRoot?.querySelector('.data') as IInputText;
+    if (dataEl) {
+      return dataEl.value;
+    }
+    return ""
+  }
+
+  private reset() {
+    const dataEl = this.shadowRoot?.querySelector('.data') as IInputText;
+    const groupEl = this.shadowRoot?.querySelector('.task-group');
+    dataEl.value = "";
+    groupEl?.replaceChildren();
+    this.addNewTask();
+  }
+
   private registerListeners() {
     const addBtn = this.shadowRoot?.querySelector('.add');
+    const resetBtn = this.shadowRoot?.querySelector('.reset');
 
     if (addBtn) {
       addBtn.addEventListener('click', () => {
         this.addNewTask();
+      })
+    }
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        this.reset();
       })
     }
   }
@@ -71,10 +94,12 @@ export class InputTaskGroup extends HTMLElement implements IInputTaskGroup {
     this.shadow.innerHTML = `
       <style>${styles}</style>
       <div class="container">
+        <input-text class="data" type="textarea" label="data"></input-text>
         <div class="task-group">
           <input-task></input-task>
         </div>
         <app-button class="add" text="Add task"></app-button>
+        <app-button class="reset" text="Reset"></app-button>
       </div>
     `
   }

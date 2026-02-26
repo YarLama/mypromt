@@ -4,10 +4,31 @@
   margin-bottom: 20px;
 }
 
+.data {
+  grid-column: span 10;
+}
+
 .task-group {
   grid-column: span 10;
 }
 
+.add, .reset {
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
 .add {
-  grid-column: 4/7;
+  grid-column: 2/5;
+
+  @media (min-width: 768px) {
+    grid-column: 2/5;
+  }
+}
+
+.reset {
+  grid-column: 7/10;
+
+  @media (min-width: 768px) {
+    grid-column: 7/10;
+  }
 }
