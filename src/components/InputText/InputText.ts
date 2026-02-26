@@ -26,8 +26,6 @@ export class InputText extends HTMLElement implements IInputText {
     this.render();
   }
 
-  disconnectedCallback() { }
-
   get value(): string {
     const inputText = this.shadowRoot?.querySelector("input")?.value;
     const textareaText = this.shadowRoot?.querySelector("textarea")?.value;
