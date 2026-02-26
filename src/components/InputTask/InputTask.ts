@@ -35,6 +35,7 @@ export class InputTask extends HTMLElement {
     const removeEl = this.shadowRoot?.querySelector('.remove');
     const toMarkEl = this.shadowRoot?.querySelector('.to-mark-layer');
     const markLayerEl = this.shadowRoot?.querySelector('.mark-layer');
+    const inputEl = this.shadowRoot?.querySelector('.input');
 
     if (removeEl) {
       removeEl.addEventListener('click', () => this.remove());
@@ -48,7 +49,6 @@ export class InputTask extends HTMLElement {
         
         if (markEl instanceof HTMLElement) {
           this._selectedMark = markEl.dataset.mark || "";
-          console.log(this._selectedMark)
           this._state = "edit";
           this.updateRender();
           return;
@@ -58,6 +58,17 @@ export class InputTask extends HTMLElement {
           this._state = "edit";
           this.updateRender();
         }
+      })
+    }
+
+    if (inputEl) {
+      let timer: number | null = null;
+      inputEl.addEventListener('input', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          this._taskText = target.textContent;
+        }, 500);
       })
     }
 
