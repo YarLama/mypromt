@@ -1,6 +1,6 @@
 import { constitution } from "../store/constitution";
+import { task } from "../store/task";
 import { appEvents, type appEventsType } from "./types/actions";
-
 
 type VoidHandler = () => void;
 
@@ -14,7 +14,20 @@ const getConstitutionHandler = () => {
   const text = constitution.getFullText();
   navigator.clipboard.writeText(text);
 }
-const getTaskHandler = () => { }
+const getTaskHandler = () => { 
+  //@ts-ignore
+  const id = window.Temporal.Now.instant().epochMilliseconds.toString(36).slice(-6);
+  const taskGroupEl = document.querySelector('input-task-group');
+  let tasks = taskGroupEl?.value;
+  let data = taskGroupEl?.data || "";
+  if (tasks) {
+    if (tasks?.length === 1 && tasks[0]?.text === "") tasks = [];
+    if (tasks?.length > 1 && tasks?.slice(-1)[0].text === "") tasks.pop();
+    task.updateTasks(tasks);
+  }
+  task.updateData(data);
+  navigator.clipboard.writeText(task.getFullText()) 
+}
 const openModalHandler = () => { }
 const closeModalHandler = () => { }
 const confirmModalHandler = () => { }
@@ -23,9 +36,9 @@ const cancelModalHandler = () => { }
 
 export const AppHandlers: Record<appEventsType, VoidHandler> = {
   [appEvents.getConstitution]: () => getConstitutionHandler(),
-  [appEvents.getTask]: () => { console.log('getTask') },
-  [appEvents.openModal]: () => { console.log('openModal') },
-  [appEvents.closeModal]: () => { },
-  [appEvents.confirmModal]: () => { },
-  [appEvents.cancelModal]: () => { },
+  [appEvents.getTask]: () => getTaskHandler(),
+  [appEvents.openModal]: () => openModalHandler(),
+  [appEvents.closeModal]: () => closeModalHandler(),
+  [appEvents.confirmModal]: () => confirmModalHandler(),
+  [appEvents.cancelModal]: () => cancelModalHandler(),
 }
