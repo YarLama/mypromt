@@ -1,4 +1,4 @@
-import { AppButton, ExpandableBlock, InputText } from "./components";
+import { AppButton, ExpandableBlock, InputTaskGroup, InputText } from "./components";
 import { InputTask } from "./components/InputTask/InputTask";
 import { AppHandlers } from "./utils/actionLogic";
 
@@ -29,6 +29,7 @@ class App {
     defineComponent('input-text', InputText);
     defineComponent('app-button', AppButton);
     defineComponent('input-task', InputTask);
+    defineComponent('input-task-group', InputTaskGroup);
   }
 }
 

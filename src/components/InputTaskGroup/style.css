@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  margin-bottom: 20px;
+}
+
+.task-group {
+  grid-column: span 10;
+}
+
+.add {
+  grid-column: 4/7;
+}
