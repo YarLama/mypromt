@@ -1,7 +1,20 @@
 import { marksDefault } from '../../utils/constants';
 import styles from './style.css?inline'
 
-export class InputTask extends HTMLElement {
+declare global {
+  interface IInputTask extends HTMLElement {
+    readonly value: {
+      "mark": string,
+      "text": string
+    };
+  }
+
+  interface HTMLElementTagNameMap {
+    'input-task': IInputTask
+  }
+}
+
+export class InputTask extends HTMLElement implements IInputTask {
 
   private shadow: ShadowRoot;
   private _state: 'mark' | 'edit' = 'edit';
