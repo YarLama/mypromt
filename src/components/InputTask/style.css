@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  --padding: 8px;
+}
+
+.container {
+  width: 100%;
+  min-height: 80px;
+  box-sizing: border-box;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+}
+
+.mark-layer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: calc(var(--padding) * 2);
+
+  &.hidden {
+    display: none;
+  }
+  
+  &:not(.hidden) {
+    ~.tooltip {
+      display: none;
+    }
+  }
+}
+
+.mark {
+  aspect-ratio: 1;
+  grid-column: span 2;
+  border: 1px var(--secondary) solid;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--secondary);
+    color: var(--primary);
+  }
+
+  @media (min-width: 768px) {
+    grid-column: span 1;
+  }
+}
+
+.edit-layer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: var(--padding);
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.mark-layer, .edit-layer {
+  grid-column: span 19;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateX(5px);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+.to-mark-layer {
+  width: 32px;
+  height: 100%;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.input {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex-grow: 1;
+  outline: none;
+  min-height: 1.2em;
+
+  &:empty::before {
+    content: "Input your task";
+  }
+}
+
+.tooltip {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: var(--padding) 5px;
+}
+
+.remove {
+  width: 30px;
+  height: 100%;
+  background: var(--secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+}
