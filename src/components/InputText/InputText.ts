@@ -3,7 +3,7 @@ import styles from './style.css?inline'
 declare global {
 
   interface IInputText extends HTMLElement {
-    readonly value: string;
+    value: string;
   }
 
   interface HTMLElementTagNameMap {
@@ -32,6 +32,14 @@ export class InputText extends HTMLElement implements IInputText {
     const responce = this.type === "text" ? inputText : textareaText;
 
     return responce ?? "";
+  }
+
+  set value(text: string) {
+    const inputText = this.shadowRoot?.querySelector("input");
+    const textareaText = this.shadowRoot?.querySelector("textarea");
+    this.type === "text" 
+      ? inputText && (inputText.value = text) 
+      : textareaText && (textareaText.value = text);
   }
 
   private getTemplate(type: "text" | "textarea", label: string) {
