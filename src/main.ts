@@ -4,15 +4,13 @@ import { AppHandlers } from "./utils/actionLogic";
 
 class App {
   static async init() {
-    console.log('App initializing...');
     this.registerComponents();
     this.registerAppListeners();
-    console.log('App initializing success!')
   }
 
   private static registerAppListeners() {
     document.addEventListener('app-action', (e) => {
-      const { action } = e.detail;  
+      const { action } = e.detail;
       AppHandlers[action]?.();
     });
   }
@@ -21,7 +19,6 @@ class App {
     const defineComponent = (name: string, constructor: CustomElementConstructor) => {
       if (!customElements.get(name)) {
         customElements.define(name, constructor);
-        console.log(`Registration component: <${name}>`)
       }
     }
 
